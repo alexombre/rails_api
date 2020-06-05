@@ -4,11 +4,12 @@ class ImagesController < ApplicationController
   
   
   def index
-    
+    @images = Image.all
+    render json: @images
   end
 
   def create
-    @image = Image.create(image_params)
+    @image = Image.create(image_params.merge(user_id: current_user.id))
     if @image.save
       render json: @image, status: :created
     else
@@ -20,7 +21,7 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.require(:image).permit(:stream, :extension, :description)
+    params.require(:image).permit(:stream, :extension, :description, :private?)
   end
   
   def respond_with(resource, _opts = {})

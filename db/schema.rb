@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200604150707) do
+ActiveRecord::Schema.define(version: 20200605113329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,11 @@ ActiveRecord::Schema.define(version: 20200604150707) do
     t.binary   "stream"
     t.text     "description"
     t.string   "extension"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id"
+    t.boolean  "private?",    default: false
+    t.index ["user_id"], name: "index_images_on_user_id", using: :btree
   end
 
   create_table "jwt_blacklist", force: :cascade do |t|
