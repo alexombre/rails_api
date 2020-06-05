@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     
     resources :profile, only: [:index]
     get 'profile/comments', to: 'profile#comment'
+    get 'profile/images', to: 'profile#image'
     
     
     resources :images, only: [:index, :create] do

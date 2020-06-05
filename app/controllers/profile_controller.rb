@@ -10,6 +10,10 @@ class ProfileController < ApplicationController
     render json: Comment.all.select{|com| com.user_id == current_user.id}
   end
   
+  def image
+    render json: Image.all.select{|img| img.user_id == current_user.id}
+  end
+  
   private
   
   def respond_with(resource, _opts = {})
