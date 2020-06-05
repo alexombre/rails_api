@@ -1,10 +1,10 @@
 class ImagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:create]
   respond_to :json
   
   
   def index
-    @images = Image.all
+    @images = Image.all.select{|img| !img.private?}
     render json: @images
   end
 
