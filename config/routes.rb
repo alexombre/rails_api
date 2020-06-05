@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     
     
     resources :profile, only: [:index]
+    get 'profile/comments', to: 'profile#comment'
+    
     
     resources :images, only: [:index, :create] do
       resources :comments, only: [:index, :create]
